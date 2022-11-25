@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -11,11 +12,13 @@ import { UsersModule } from './users/users.module';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'mysqlcourse',
+      database: 'nestjscourse',
       entities: [User],
       autoLoadEntities: true,
+      synchronize: true,
     }),
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
